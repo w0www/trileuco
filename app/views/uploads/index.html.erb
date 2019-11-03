@@ -1,0 +1,40 @@
+
+<div id="uploads" class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row justify-content-md-center">
+    <div class="h1 col col-md-auto">
+      <u>Trileuco HR Test App</u>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="h5 col col-md-auto">
+      Uploaded images
+    </div>
+    <%= link_to 'New Upload', new_upload_path %>
+
+  </div>
+  <div id="upload_fieldset">
+    <% @uploads.each do |upload| %>
+    <fieldset>
+      <legend>
+        <%= upload.title %>
+        <%= link_to "Delete", upload_path(upload.id), :method => :delete, :class => "delete"%>
+      </legend>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-3">
+          <%= link_to image_tag(upload.file_url(:size1), :class => 'img-fluid'), upload.file_url(:size1), :target => '_blank', :class => 'img-fluid' %>
+          100x100
+        </div>
+        <div class="col col-lg-4">
+          <%= link_to image_tag(upload.file_url(:size2), :class => 'img-fluid'), upload.file_url(:size2), :target => '_blank', :class => 'img-fluid' %>
+          300x300
+        </div>
+        <div class="col col-lg-5">
+          <%= link_to image_tag(upload.file_url, :class => 'img-fluid'), upload.file_url, :target => '_blank', :class => 'img-fluid' %>
+          Original Size
+        </div>
+      </div>
+    </fieldset>
+    <% end %>
+  </div>
+</div>
